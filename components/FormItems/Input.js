@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const InputContainer = styled.View`
-  width: 100%;
+  width: 50%;
   flex-direction: column;
   justify-content: space-between;
   margin-top: 50;
@@ -10,7 +10,7 @@ const InputContainer = styled.View`
 `;
 
 const MetricInput = styled.TextInput`
-  width: 200;
+  width: ${({ width }) => (width ? width : 200)};
   height: 66;
   margin-left: 10;
   background-color: white;
@@ -21,14 +21,16 @@ const Label = styled.Text`
   margin-left: 10;
 `;
 
-const Input = ({ onChangeHandler, metric, metricName, metricLabel }) => {
+const Input = ({ onChangeHandler, metric, metricName, metricLabel, width }) => {
   return (
     <InputContainer>
-      <Label>{meticLabel}</Label>
+      <Label>{metricLabel}</Label>
       <MetricInput
+        width={width}
         placeholder='enter text'
         onChange={e => onChangeHandler(e, metricName)}
         value={metric}
+        keyboardType={"numeric"}
       />
     </InputContainer>
   );
