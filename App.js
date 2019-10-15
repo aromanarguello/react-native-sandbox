@@ -1,7 +1,15 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
 import Input from "./components/FormItems/Input";
+import Button from "./components/Buttons/Button";
+
 import styled from "styled-components";
+
+const Screen = styled.View`
+  padding-top: 50;
+  height: 100%;
+  flex-direction: column;
+  background-color: #00a1e4;
+`;
 
 const HeightContainer = styled.View`
   width: 100%;
@@ -31,8 +39,10 @@ export default App = () => {
     setMetric(current => ({ ...current, [metricName]: text }));
   };
 
+  const onSubmitHandler = () => console.log(metric);
+
   return (
-    <View style={styles.screen}>
+    <Screen>
       <Input
         metricName='weight'
         metricLabel='Weight:'
@@ -65,28 +75,7 @@ export default App = () => {
         <Label>feet</Label>
         <Label>inches</Label>
       </LabelContainer>
-    </View>
+      <Button onSubmitHandler={onSubmitHandler} title='Submit' width={278} />
+    </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  screen: {
-    paddingTop: 50,
-    height: "100%",
-    flexDirection: "column",
-    backgroundColor: "#00A1E4"
-  },
-  headerContainer: {
-    height: 80,
-    borderColor: "red",
-    width: "100%",
-    borderWidth: 1
-  },
-  list: {
-    padding: 10,
-    backgroundColor: "lightgray",
-    borderColor: "gray",
-    borderWidth: 1,
-    marginVertical: 10
-  }
-});
