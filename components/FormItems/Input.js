@@ -36,4 +36,6 @@ const Input = ({ onChangeHandler, metric, metricName, metricLabel, width }) => {
   );
 };
 
+Input.displayName = "Input";
+
 export default Input;
