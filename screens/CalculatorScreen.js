@@ -2,6 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import Input from "../components/FormItems/Input";
 import Button from "../components/Buttons/Button";
+import Dropdown from "../components/Dropdowns/Dropdown";
+
+const activityLevels = [
+  { level: "Basal Metabolic Rate (BMR)" },
+  { level: "Ledentary: little or no exercise" },
+  { level: "Light: exercise 1-3 times/week" },
+  { level: "Moderate: exercise 4-5 times/week" },
+  { level: "Active: daily exercise or intense exercise 3-4 times/week" },
+  { level: "Very Active: intese exercise 6-7 times/week" },
+  { level: "Extra Active: very intense exercise daily, or physical job" }
+];
 
 const Calculator = ({ navigation }) => {
   const [metric, setMetric] = React.useState({});
@@ -11,7 +22,7 @@ const Calculator = ({ navigation }) => {
   };
 
   const onSubmitHandler = () => {
-    if (Object.keys(metric).length === 4) {
+    if (Object.keys(metric).length === 5) {
       navigation.navigate({ routeName: "Recipes" });
     }
   };
@@ -32,6 +43,7 @@ const Calculator = ({ navigation }) => {
         metric={metric.metricName}
         onChangeHandler={onChangeHandler}
       />
+
       <HeightContainer>
         <Input
           metricName='feet'
@@ -54,12 +66,22 @@ const Calculator = ({ navigation }) => {
         <Label>feet</Label>
         <Label>inches</Label>
       </LabelContainer>
+      <DropdownContainer>
+        <Dropdown activityLevels={activityLevels} />
+      </DropdownContainer>
       <Button onSubmitHandler={onSubmitHandler} title='Submit' width={278} />
     </>
   );
 };
 
 export default Calculator;
+
+const DropdownContainer = styled.View`
+  width: 100%;
+  height: 100;
+  margin-top: 35;
+  justify-content: center;
+`;
 
 const HeightContainer = styled.View`
   width: 100%;
