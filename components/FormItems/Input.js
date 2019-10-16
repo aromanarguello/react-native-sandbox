@@ -12,8 +12,11 @@ const InputContainer = styled.View`
 const MetricInput = styled.TextInput`
   width: ${({ width }) => (width ? width : 200)};
   height: 40;
+  margin-top: 5;
   margin-left: 10;
-  background-color: white;
+  padding-left: 10;
+  border-color: #95a5a6;
+  border-width: 1;
   border-radius: 2.5;
 `;
 

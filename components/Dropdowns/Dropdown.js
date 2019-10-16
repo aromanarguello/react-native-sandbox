@@ -1,26 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-
-const Label = styled.Text`
-  padding-top: 50;
-  padding-bottom: 0;
-  margin-bottom: 0;
-  align-self: flex-start;
-`;
+import { Picker } from "react-native";
 const StyledPicker = styled.Picker`
-  margin: 0;
-  padding: 0;
+  padding-right: 10;
+  padding-left: 10;
 `;
 
-const Dropdown = ({ activityLevels }) => {
+const Dropdown = ({ activityLevels, metric, setMetric }) => {
   return (
     <>
-      <Label>Activity Level:</Label>
-      <StyledPicker>
+      <Picker
+        selectedValue={metric.activityLevel}
+        onValueChange={itemValue =>
+          setMetric({ ...metric, activityLevel: itemValue })
+        }>
         {activityLevels.map(({ level }, i) => (
-          <StyledPicker.Item label={level} key={i} />
+          <Picker.Item label={level} value={level} key={i} />
         ))}
-      </StyledPicker>
+      </Picker>
     </>
   );
 };

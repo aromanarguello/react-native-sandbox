@@ -6,7 +6,7 @@ import Dropdown from "../components/Dropdowns/Dropdown";
 
 const activityLevels = [
   { level: "Basal Metabolic Rate (BMR)" },
-  { level: "Ledentary: little or no exercise" },
+  { level: "Sedentary: little or no exercise" },
   { level: "Light: exercise 1-3 times/week" },
   { level: "Moderate: exercise 4-5 times/week" },
   { level: "Active: daily exercise or intense exercise 3-4 times/week" },
@@ -15,13 +15,17 @@ const activityLevels = [
 ];
 
 const Calculator = ({ navigation }) => {
-  const [metric, setMetric] = React.useState({});
+  const [metric, setMetric] = React.useState({
+    activityLevel: activityLevels[0].level
+  });
+  const [isShowingDropdown, setIsShowingDropdown] = React.useState(false);
 
   const onChangeHandler = ({ nativeEvent: { text } }, metricName) => {
     setMetric(current => ({ ...current, [metricName]: text }));
   };
 
   const onSubmitHandler = () => {
+    console.log(metric);
     if (Object.keys(metric).length === 5) {
       navigation.navigate({ routeName: "Recipes" });
     }
@@ -66,9 +70,18 @@ const Calculator = ({ navigation }) => {
         <Label>feet</Label>
         <Label>inches</Label>
       </LabelContainer>
-      <DropdownContainer>
-        <Dropdown activityLevels={activityLevels} />
-      </DropdownContainer>
+      <Text onPress={() => setIsShowingDropdown(!isShowingDropdown)}>
+        Activity level: {metric.activityLevel}
+      </Text>
+      {isShowingDropdown ? (
+        <DropdownContainer>
+          <Dropdown
+            activityLevels={activityLevels}
+            metric={metric}
+            setMetric={setMetric}
+          />
+        </DropdownContainer>
+      ) : null}
       <Button onSubmitHandler={onSubmitHandler} title='Submit' width={278} />
     </>
   );
@@ -76,10 +89,14 @@ const Calculator = ({ navigation }) => {
 
 export default Calculator;
 
+const Text = styled.Text`
+  margin-left: 10;
+  color: blue;
+`;
 const DropdownContainer = styled.View`
   width: 100%;
   height: 100;
-  margin-top: 35;
+  margin-top: 45;
   justify-content: center;
 `;
 
@@ -89,6 +106,7 @@ const HeightContainer = styled.View`
   flex-direction: row;
   display: flex;
   margin-top: 15;
+  margin-bottom: 15;
 `;
 
 const Label = styled.Text`
