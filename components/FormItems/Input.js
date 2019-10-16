@@ -11,7 +11,7 @@ const InputContainer = styled.View`
 
 const MetricInput = styled.TextInput`
   width: ${({ width }) => (width ? width : 200)};
-  height: 66;
+  height: 40;
   margin-left: 10;
   background-color: white;
   border-radius: 2.5;
@@ -21,13 +21,20 @@ const Label = styled.Text`
   margin-left: 10;
 `;
 
-const Input = ({ onChangeHandler, metric, metricName, metricLabel, width }) => {
+const Input = ({
+  onChangeHandler,
+  metric,
+  metricName,
+  metricLabel,
+  width,
+  placeholder
+}) => {
   return (
     <InputContainer>
       <Label>{metricLabel}</Label>
       <MetricInput
         width={width}
-        placeholder='enter text'
+        placeholder={placeholder}
         onChange={e => onChangeHandler(e, metricName)}
         value={metric}
         keyboardType={"numeric"}
