@@ -5,30 +5,58 @@ import Button from "../components/Buttons/Button";
 import Dropdown from "../components/Dropdowns/Dropdown";
 
 const activityLevels = [
-  { level: "Basal Metabolic Rate (BMR)" },
-  { level: "Sedentary: little or no exercise" },
-  { level: "Light: exercise 1-3 times/week" },
-  { level: "Moderate: exercise 4-5 times/week" },
-  { level: "Active: daily exercise or intense exercise 3-4 times/week" },
-  { level: "Very Active: intese exercise 6-7 times/week" },
-  { level: "Extra Active: very intense exercise daily, or physical job" }
+  // { level: "Basal Metabolic Rate (BMR)", multiplier: 1 },
+  { level: "Sedentary: little or no exercise", multiplier: 1.2 },
+  { level: "Light: exercise 1-3 times/week", multiplier: 1.375 },
+  { level: "Moderate: exercise 3-5 times/week", multiplier: 1.55 },
+  { level: "Very Active: intese exercise 6-7 times/week", multiplier: 1.725 },
+  {
+    level: "Extra Active: very intense exercise daily, or physical job",
+    multiplier: 1.9
+  }
 ];
 
 const Calculator = ({ navigation }) => {
   const [metric, setMetric] = React.useState({
-    activityLevel: activityLevels[0].level
+    activityLevel: activityLevels[0].multiplier
   });
+
   const [isShowingDropdown, setIsShowingDropdown] = React.useState(false);
+  const [suggestedCaloricIntake, setCaloricIntake] = React.useState();
 
   const onChangeHandler = ({ nativeEvent: { text } }, metricName) => {
     setMetric(current => ({ ...current, [metricName]: text }));
   };
 
+  React.useEffect(() => {
+    setCaloricIntake(calculateCalorieIntake("men"));
+  }, [Object.keys(metric).length === 5, metric.activityLevel]);
+
   const onSubmitHandler = () => {
-    console.log(metric);
+    calculateCalorieIntake();
     if (Object.keys(metric).length === 5) {
-      navigation.navigate({ routeName: "Recipes" });
+      navigation.navigate({
+        routeName: "Recipes",
+        params: { suggestedCaloricIntake }
+      });
     }
+  };
+
+  const calculateCalorieIntake = gender => {
+    const totalInches = Number(metric.feet) * 12 + Number(metric.inches);
+    const formulas = {
+      men:
+        66 +
+        6.23 * Number(metric.weight) +
+        12.7 * totalInches -
+        6.8 * Number(metric.age),
+      women:
+        655 +
+        4.35 * Number(metric.weight) +
+        4.7 * totalInches -
+        4.7 * Number(metric.age)
+    };
+    return Math.floor(formulas[gender] * metric.activityLevel);
   };
 
   return (
@@ -51,7 +79,7 @@ const Calculator = ({ navigation }) => {
       <HeightContainer>
         <Input
           metricName='feet'
-          placeholder='...'
+          placeholder='feet'
           metricLabel='Height:'
           metric={metric.metricName}
           onChangeHandler={onChangeHandler}
@@ -60,18 +88,15 @@ const Calculator = ({ navigation }) => {
         <Input
           metricLabel='  '
           metricName='inches'
-          placeholder='...'
+          placeholder='inches'
           metric={metric.metricName}
           onChangeHandler={onChangeHandler}
           width={92}
         />
       </HeightContainer>
-      <LabelContainer>
-        <Label>feet</Label>
-        <Label>inches</Label>
-      </LabelContainer>
+      <LabelContainer></LabelContainer>
       <Text onPress={() => setIsShowingDropdown(!isShowingDropdown)}>
-        Activity level: {metric.activityLevel}
+        Activity level: {activityLevels[0].level}
       </Text>
       {isShowingDropdown ? (
         <DropdownContainer>
@@ -107,10 +132,6 @@ const HeightContainer = styled.View`
   display: flex;
   margin-top: 15;
   margin-bottom: 15;
-`;
-
-const Label = styled.Text`
-  align-items: flex-end;
 `;
 
 const LabelContainer = styled.View`

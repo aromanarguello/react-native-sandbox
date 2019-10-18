@@ -10,12 +10,13 @@ const Dropdown = ({ activityLevels, metric, setMetric }) => {
   return (
     <>
       <Picker
+        on
         selectedValue={metric.activityLevel}
         onValueChange={itemValue =>
           setMetric({ ...metric, activityLevel: itemValue })
         }>
-        {activityLevels.map(({ level }, i) => (
-          <Picker.Item label={level} value={level} key={i} />
+        {activityLevels.map(({ level, multiplier }, i) => (
+          <Picker.Item label={level} value={multiplier} key={i} />
         ))}
       </Picker>
     </>
