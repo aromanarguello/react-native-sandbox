@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { ToucableWithoutFeedback, Keyboard } from "react-native";
 
 const InputContainer = styled.View`
   width: 50%;
@@ -24,15 +25,23 @@ const Label = styled.Text`
   margin-left: 10;
 `;
 
+const DismissKeyboard = ({ children }) => (
+  <ToucableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </ToucableWithoutFeedback>
+);
+
 const Input = ({
   onChangeHandler,
   metric,
   metricName,
   metricLabel,
   width,
-  placeholder
+  placeholder,
+  keyboardType
 }) => {
   return (
+    // <DismissKeyboard>
     <InputContainer>
       <Label>{metricLabel}</Label>
       <MetricInput
@@ -40,9 +49,11 @@ const Input = ({
         placeholder={placeholder}
         onChange={e => onChangeHandler(e, metricName)}
         value={metric}
-        keyboardType={"numeric"}
+        keyboardType={keyboardType}
+        returnKeyType='next'
       />
     </InputContainer>
+    // </DismissKeyboard>
   );
 };
 
