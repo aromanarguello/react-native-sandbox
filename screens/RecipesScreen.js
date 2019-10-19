@@ -1,14 +1,16 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { RecipeContext } from "../context/RecipeContext";
 
 const Recipes = props => {
-  console.log(props.navigation.state);
   return (
-    <View>
-      <Text>
-        Suggested: {props.navigation.state.params.suggestedCaloricIntake}
-      </Text>
-    </View>
+    <RecipeContext.Consumer>
+      {({ suggestedCaloricIntake }) => (
+        <View>
+          <Text>Suggested: {suggestedCaloricIntake}</Text>
+        </View>
+      )}
+    </RecipeContext.Consumer>
   );
 };
 

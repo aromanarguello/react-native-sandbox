@@ -1,8 +1,10 @@
 import React from "react";
 import Navigator from "./navigation/Navigation";
-
-import styled from "styled-components";
-
+import { RecipeContextProvider } from "./context/RecipeContext";
 export default App = () => {
-  return <Navigator />;
+  return (
+    <RecipeContextProvider>
+      <Navigator />
+    </RecipeContextProvider>
+  );
 };
