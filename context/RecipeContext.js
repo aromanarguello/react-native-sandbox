@@ -25,12 +25,9 @@ const RecipeContextProvider = ({ children }) => {
     setMetric(current => ({ ...current, [metricName]: text }));
   };
 
-  React.useEffect(
-    React.useCallback(() => {
-      setCaloricIntake(calculateCalorieIntake("men"));
-    }),
-    [Object.keys(metric).length === 5, metric.activityLevel]
-  );
+  React.useEffect(() => {
+    setCaloricIntake(calculateCalorieIntake("men"));
+  }, [Object.keys(metric).length === 5, metric.activityLevel]);
 
   const calculateCalorieIntake = gender => {
     const totalInches = Number(metric.feet) * 12 + Number(metric.inches);

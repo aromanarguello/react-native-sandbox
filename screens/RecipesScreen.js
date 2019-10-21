@@ -14,19 +14,48 @@ const Error = styled.Text`
 
 const Picture = styled.Image``;
 
-const Recipes = () => {
-  const { data, loading, error } = useQuery(FETCH_RECIPES, {
-    variables: { calories: 500, meal: "beef" }
-  });
-  console.log(data);
+const getRecipesByCalories = (
+  suggestedCalories,
+  { fetchRecipes: { hits } }
+) => {
+  const divideByFive = suggestedCalories / 5;
+  let currentCalorieCount = 0;
+  let currentRecipes = [];
+  console.log(Math.floor(divideByFive));
+
+  const recipe = hits.filter(
+    ({ recipe: { calories } }) => calories <= suggestedCalories + 100
+  );
+  console.log(recipe[0]);
+  while (currentCalorieCount < suggestedCalories) {
+    // find/grab recipe
+    // add recipe to array
+    // calculate recipe minus suggeste calories
+    // add another
+    // repeat
+  }
+};
+
+const Recipes = ({
+  navigation: {
+    state: { params }
+  }
+}) => {
+  const { data, loading, error } = useQuery(FETCH_RECIPES);
+
+  React.useEffect(() => {
+    if (data) getRecipesByCalories(params.suggestedCalories, data);
+  }, [data]);
+
   if (loading) return <Loading>Loading...</Loading>;
   if (error) return <Error>Data couldn't be fetched</Error>;
+
   return (
     <RecipeContext.Consumer>
       {({ suggestedCaloricIntake }) => (
         <View>
           <Text>Suggested: {suggestedCaloricIntake}</Text>
-          <Text>{data.fetchRecipes.hits[0].recipe.label}</Text>
+
           <Picture
             style={{ width: 150, height: 150 }}
             source={{ uri: data.fetchRecipes.hits[0].recipe.image }}

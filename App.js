@@ -16,10 +16,10 @@ const client = new ApolloClient({
 
 export default App = () => {
   return (
-    <ApolloProvider client={client}>
-      <RecipeContextProvider>
+    <RecipeContextProvider>
+      <ApolloProvider client={client}>
         <Navigator />
-      </RecipeContextProvider>
-    </ApolloProvider>
+      </ApolloProvider>
+    </RecipeContextProvider>
   );
 };

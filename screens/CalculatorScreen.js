@@ -6,12 +6,13 @@ import Button from "../components/Buttons/Button";
 import Dropdown from "../components/Dropdowns/Dropdown";
 
 const Calculator = ({ navigation }) => {
-  const onSubmitHandler = () => {
+  const onSubmitHandler = suggestedCalories => {
     navigation.navigate({
-      routeName: "Recipes"
+      routeName: "Recipes",
+      params: { suggestedCalories }
     });
   };
-  console.log("hi");
+
   return (
     <RecipeContext.Consumer>
       {({
@@ -20,68 +21,67 @@ const Calculator = ({ navigation }) => {
         isShowingDropdown,
         setIsShowingDropdown,
         activityLevels,
-        setMetric
-      }) =>
-        console.log(metric) || (
-          <>
+        setMetric,
+        suggestedCaloricIntake
+      }) => (
+        <>
+          <Input
+            metricName='weight'
+            placeholder='...'
+            metricLabel='Weight: (lbs)'
+            metric={metric.metricName}
+            keyboardType='numeric'
+            onChangeHandler={onChangeHandler}
+          />
+          <Input
+            metricName='age'
+            placeholder='...'
+            keyboardType='numeric'
+            metricLabel='Age:'
+            metric={metric.metricName}
+            onChangeHandler={onChangeHandler}
+          />
+          <HeightContainer>
             <Input
-              metricName='weight'
-              placeholder='...'
-              metricLabel='Weight: (lbs)'
-              metric={metric.metricName}
+              metricName='feet'
               keyboardType='numeric'
+              placeholder='feet'
+              metricLabel='Height:'
+              metric={metric.metricName}
               onChangeHandler={onChangeHandler}
+              width={92}
             />
             <Input
-              metricName='age'
-              placeholder='...'
+              metricLabel='  '
               keyboardType='numeric'
-              metricLabel='Age:'
+              metricName='inches'
+              placeholder='inches'
               metric={metric.metricName}
               onChangeHandler={onChangeHandler}
+              width={92}
             />
-            <HeightContainer>
-              <Input
-                metricName='feet'
-                keyboardType='numeric'
-                placeholder='feet'
-                metricLabel='Height:'
-                metric={metric.metricName}
-                onChangeHandler={onChangeHandler}
-                width={92}
+          </HeightContainer>
+          <LabelContainer></LabelContainer>
+          <Text onPress={() => setIsShowingDropdown(!isShowingDropdown)}>
+            Activity level: {activityLevels[0].level}
+          </Text>
+          {isShowingDropdown ? (
+            <DropdownContainer>
+              <Dropdown
+                activityLevels={activityLevels}
+                metric={metric}
+                setMetric={setMetric}
+                setIsShowingDropdown={setIsShowingDropdown}
               />
-              <Input
-                metricLabel='  '
-                keyboardType='numeric'
-                metricName='inches'
-                placeholder='inches'
-                metric={metric.metricName}
-                onChangeHandler={onChangeHandler}
-                width={92}
-              />
-            </HeightContainer>
-            <LabelContainer></LabelContainer>
-            <Text onPress={() => setIsShowingDropdown(!isShowingDropdown)}>
-              Activity level: {activityLevels[0].level}
-            </Text>
-            {isShowingDropdown ? (
-              <DropdownContainer>
-                <Dropdown
-                  activityLevels={activityLevels}
-                  metric={metric}
-                  setMetric={setMetric}
-                  setIsShowingDropdown={setIsShowingDropdown}
-                />
-              </DropdownContainer>
-            ) : null}
-            <Button
-              onSubmitHandler={onSubmitHandler}
-              title='Submit'
-              width={278}
-            />
-          </>
-        )
-      }
+            </DropdownContainer>
+          ) : null}
+          <Button
+            onSubmitHandler={() => onSubmitHandler(suggestedCaloricIntake)}
+            title='Submit'
+            width={278}
+          />
+        </>
+      )}
     </RecipeContext.Consumer>
   );
 };
