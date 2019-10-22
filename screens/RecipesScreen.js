@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { View, Text } from "react-native";
 import { FETCH_RECIPES } from "../graphql/queries";
 import { useQuery } from "@apollo/react-hooks";
-import { RecipeContext } from "../context/RecipeContext";
 
 const Loading = styled.Text``;
 
@@ -14,26 +13,21 @@ const Error = styled.Text`
 
 const Picture = styled.Image``;
 
-const getRecipesByCalories = (
-  suggestedCalories,
-  { fetchRecipes: { hits } }
-) => {
-  const divideByFive = suggestedCalories / 5;
-  let currentCalorieCount = 0;
+const getRecipesByCalories = (suggestedCalories, { fetchRecipes }) => {
   let currentRecipes = [];
-  console.log(Math.floor(divideByFive));
-
-  const recipe = hits.filter(
-    ({ recipe: { calories } }) => calories <= suggestedCalories + 100
+  let currentCalorieCount = 0;
+  const divideByFive = suggestedCalories / 5;
+  const recipe = fetchRecipes.filter(
+    ({ calories }) => calories <= divideByFive
   );
-  console.log(recipe[0]);
-  while (currentCalorieCount < suggestedCalories) {
-    // find/grab recipe
-    // add recipe to array
-    // calculate recipe minus suggeste calories
-    // add another
-    // repeat
+  for (
+    currentCalorieCount;
+    currentCalorieCount < suggestedCalories;
+    currentCalorieCount += recipe[0].calories
+  ) {
+    currentRecipes.push(recipe[0]);
   }
+  return currentRecipes;
 };
 
 const Recipes = ({
@@ -43,27 +37,27 @@ const Recipes = ({
 }) => {
   const { data, loading, error } = useQuery(FETCH_RECIPES);
 
-  React.useEffect(() => {
-    if (data) getRecipesByCalories(params.suggestedCalories, data);
-  }, [data]);
-
   if (loading) return <Loading>Loading...</Loading>;
+
   if (error) return <Error>Data couldn't be fetched</Error>;
 
-  return (
-    <RecipeContext.Consumer>
-      {({ suggestedCaloricIntake }) => (
-        <View>
-          <Text>Suggested: {suggestedCaloricIntake}</Text>
+  const recipes = getRecipesByCalories(params.suggestedCalories, data);
 
+  console.log(recipes);
+
+  return (
+    <View>
+      {recipes.map(({ image, label }, i) => (
+        <View key={i}>
+          <Text>{label}</Text>
           <Picture
             style={{ width: 150, height: 150 }}
-            source={{ uri: data.fetchRecipes.hits[0].recipe.image }}
+            source={{ uri: image }}
             accessibilityLabel='meal image'
           />
         </View>
-      )}
-    </RecipeContext.Consumer>
+      ))}
+    </View>
   );
 };
 
