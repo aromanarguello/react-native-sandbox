@@ -13,41 +13,30 @@ const Error = styled.Text`
 
 const Picture = styled.Image``;
 
-const getRecipesByCalories = (suggestedCalories, { fetchRecipes }) => {
-  let currentRecipes = [];
-  let currentCalorieCount = 0;
-  const divideByFive = suggestedCalories / 5;
-  const recipe = fetchRecipes.filter(
-    ({ calories }) => calories <= divideByFive
-  );
-  for (
-    currentCalorieCount;
-    currentCalorieCount < suggestedCalories;
-    currentCalorieCount += recipe[0].calories
-  ) {
-    currentRecipes.push(recipe[0]);
-  }
-  return currentRecipes;
-};
-
 const Recipes = ({
   navigation: {
     state: { params }
   }
 }) => {
-  const { data, loading, error } = useQuery(FETCH_RECIPES);
+  const {
+    data: { fetchRecipes },
+    loading,
+    error
+  } = useQuery(FETCH_RECIPES, {
+    variables: {
+      calories: "500",
+      meal: "chicken",
+      suggestedCalories: params.suggestedCalories
+    }
+  });
 
   if (loading) return <Loading>Loading...</Loading>;
 
   if (error) return <Error>Data couldn't be fetched</Error>;
 
-  const recipes = getRecipesByCalories(params.suggestedCalories, data);
-
-  console.log(recipes);
-
   return (
     <View>
-      {recipes.map(({ image, label }, i) => (
+      {fetchRecipes.map(({ image, label }, i) => (
         <View key={i}>
           <Text>{label}</Text>
           <Picture

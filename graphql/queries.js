@@ -1,8 +1,16 @@
 import { gql } from "apollo-boost";
 
 const FETCH_RECIPES = gql`
-  query {
-    fetchRecipes(calories: "500", meal: "bacon") {
+  query FetchRecipes(
+    $calories: String!
+    $meal: String!
+    $suggestedCalories: Int!
+  ) {
+    fetchRecipes(
+      calories: $calories
+      meal: $meal
+      suggestedCalories: $suggestedCalories
+    ) {
       calories
       label
       image
