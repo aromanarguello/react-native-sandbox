@@ -18,14 +18,9 @@ const Recipes = ({
     state: { params }
   }
 }) => {
-  const {
-    data: { fetchRecipes },
-    loading,
-    error
-  } = useQuery(FETCH_RECIPES, {
+  console.log(params);
+  const { data, loading, error } = useQuery(FETCH_RECIPES, {
     variables: {
-      calories: "500",
-      meal: "chicken",
       suggestedCalories: params.suggestedCalories
     }
   });
@@ -33,10 +28,9 @@ const Recipes = ({
   if (loading) return <Loading>Loading...</Loading>;
 
   if (error) return <Error>Data couldn't be fetched</Error>;
-
   return (
     <View>
-      {fetchRecipes.map(({ image, label }, i) => (
+      {data.fetchRecipes.map(({ image, label }, i) => (
         <View key={i}>
           <Text>{label}</Text>
           <Picture

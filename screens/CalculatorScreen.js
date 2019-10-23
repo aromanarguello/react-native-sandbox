@@ -6,10 +6,10 @@ import Button from "../components/Buttons/Button";
 import Dropdown from "../components/Dropdowns/Dropdown";
 
 const Calculator = ({ navigation }) => {
-  const onSubmitHandler = suggestedCalories => {
+  const onSubmitHandler = (suggestedCalories, metric) => {
     navigation.navigate({
       routeName: "Recipes",
-      params: { suggestedCalories }
+      params: { suggestedCalories, metric }
     });
   };
 
@@ -76,7 +76,9 @@ const Calculator = ({ navigation }) => {
             </DropdownContainer>
           ) : null}
           <Button
-            onSubmitHandler={() => onSubmitHandler(suggestedCaloricIntake)}
+            onSubmitHandler={() =>
+              onSubmitHandler(suggestedCaloricIntake, metric)
+            }
             title='Submit'
             width={278}
           />
