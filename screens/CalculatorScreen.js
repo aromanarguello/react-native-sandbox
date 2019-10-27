@@ -1,5 +1,7 @@
 import React from "react";
+import { ToucableWithoutFeedback, Keyboard } from "react-native";
 import { RecipeContext } from "../context/RecipeContext";
+import { Form } from "native-base";
 import styled from "styled-components";
 import Input from "../components/FormItems/Input";
 import Button from "../components/Buttons/Button";
@@ -12,6 +14,11 @@ const Calculator = ({ navigation }) => {
       params: { suggestedCalories, metric }
     });
   };
+  const DismissKeyboard = ({ children }) => (
+    <ToucableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      {children}
+    </ToucableWithoutFeedback>
+  );
 
   return (
     <RecipeContext.Consumer>
@@ -24,13 +31,14 @@ const Calculator = ({ navigation }) => {
         setMetric,
         suggestedCaloricIntake
       }) => (
-        <>
+        <Form>
           <Input
             metricName='weight'
             placeholder='...'
             metricLabel='Weight: (lbs)'
             metric={metric.metricName}
             keyboardType='numeric'
+            returnKeyType='next'
             onChangeHandler={onChangeHandler}
           />
           <Input
@@ -38,6 +46,7 @@ const Calculator = ({ navigation }) => {
             placeholder='...'
             keyboardType='numeric'
             metricLabel='Age:'
+            returnKeyType='next'
             metric={metric.metricName}
             onChangeHandler={onChangeHandler}
           />
@@ -47,6 +56,7 @@ const Calculator = ({ navigation }) => {
               keyboardType='numeric'
               placeholder='feet'
               metricLabel='Height:'
+              returnKeyType='next'
               metric={metric.metricName}
               onChangeHandler={onChangeHandler}
               width={92}
@@ -56,25 +66,20 @@ const Calculator = ({ navigation }) => {
               keyboardType='numeric'
               metricName='inches'
               placeholder='inches'
+              returnKeyType='next'
               metric={metric.metricName}
               onChangeHandler={onChangeHandler}
               width={92}
             />
           </HeightContainer>
-          <LabelContainer></LabelContainer>
-          <Text onPress={() => setIsShowingDropdown(!isShowingDropdown)}>
-            Activity level: {activityLevels[0].level}
-          </Text>
-          {isShowingDropdown ? (
-            <DropdownContainer>
-              <Dropdown
-                activityLevels={activityLevels}
-                metric={metric}
-                setMetric={setMetric}
-                setIsShowingDropdown={setIsShowingDropdown}
-              />
-            </DropdownContainer>
-          ) : null}
+          <DropdownContainer>
+            <Dropdown
+              activityLevels={activityLevels}
+              metric={metric}
+              setMetric={setMetric}
+              setIsShowingDropdown={setIsShowingDropdown}
+            />
+          </DropdownContainer>
           <Button
             onSubmitHandler={() =>
               onSubmitHandler(suggestedCaloricIntake, metric)
@@ -82,7 +87,7 @@ const Calculator = ({ navigation }) => {
             title='Submit'
             width={278}
           />
-        </>
+        </Form>
       )}
     </RecipeContext.Consumer>
   );
@@ -90,10 +95,6 @@ const Calculator = ({ navigation }) => {
 
 export default Calculator;
 
-const Text = styled.Text`
-  margin-left: 10;
-  color: blue;
-`;
 const DropdownContainer = styled.View`
   width: 100%;
   height: 100;
@@ -108,13 +109,4 @@ const HeightContainer = styled.View`
   display: flex;
   margin-top: 15;
   margin-bottom: 15;
-`;
-
-const LabelContainer = styled.View`
-  width: 100%;
-  flex-direction: row;
-  align-items: flex-start;
-  justify-content: space-around;
-  height: 50;
-  margin-left: 30;
 `;

@@ -1,6 +1,10 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import { Picker } from "react-native";
+import { Picker, Item } from "native-base";
+
+const DropdownContainer = styled(Item)`
+  margin-top: 0;
+`;
 
 const Dropdown = ({
   activityLevels,
@@ -9,9 +13,9 @@ const Dropdown = ({
   setIsShowingDropdown
 }) => {
   return (
-    <>
+    <DropdownContainer picker>
       <Picker
-        on
+        mode='dropdown'
         selectedValue={metric.activityLevel}
         onValueChange={itemValue => {
           setMetric({ ...metric, activityLevel: itemValue });
@@ -21,7 +25,7 @@ const Dropdown = ({
           <Picker.Item label={level} value={multiplier} key={i} />
         ))}
       </Picker>
-    </>
+    </DropdownContainer>
   );
 };
 

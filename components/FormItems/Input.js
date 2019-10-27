@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { ToucableWithoutFeedback, Keyboard } from "react-native";
+import { Input, Item } from "native-base";
 
 const InputContainer = styled.View`
   width: 50%;
@@ -10,7 +10,7 @@ const InputContainer = styled.View`
   height: 50;
 `;
 
-const MetricInput = styled.TextInput`
+const MetricInput = styled(Item)`
   width: ${({ width }) => (width ? width : 200)};
   height: 40;
   margin-top: 5;
@@ -24,39 +24,34 @@ const MetricInput = styled.TextInput`
 const Label = styled.Text`
   margin-left: 10;
 `;
-
-const DismissKeyboard = ({ children }) => (
-  <ToucableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    {children}
-  </ToucableWithoutFeedback>
-);
-
-const Input = ({
+const CustomInput = ({
   onChangeHandler,
   metric,
   metricName,
   metricLabel,
   width,
   placeholder,
-  keyboardType
+  keyboardType,
+  returnKeyType
 }) => {
   return (
     // <DismissKeyboard>
     <InputContainer>
       <Label>{metricLabel}</Label>
-      <MetricInput
-        width={width}
-        placeholder={placeholder}
-        onChange={e => onChangeHandler(e, metricName)}
-        value={metric}
-        keyboardType={keyboardType}
-        returnKeyType='next'
-      />
+      <MetricInput regular width={width}>
+        <Input
+          placeholder={placeholder}
+          onChange={e => onChangeHandler(e, metricName)}
+          value={metric}
+          // keyboardType={keyboardType}
+          returnKeyType={returnKeyType}
+        />
+      </MetricInput>
     </InputContainer>
     // </DismissKeyboard>
   );
 };
 
-Input.displayName = "Input";
+CustomInput.displayName = "CustomInput";
 
-export default Input;
+export default CustomInput;

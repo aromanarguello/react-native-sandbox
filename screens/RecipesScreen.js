@@ -28,6 +28,7 @@ const Recipes = ({
   if (loading) return <Loading>Loading...</Loading>;
 
   if (error) return <Error>Data couldn't be fetched</Error>;
+  console.log(data);
   return (
     <View>
       {data.fetchRecipes.map(({ image, label }, i) => (

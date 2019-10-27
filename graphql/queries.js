@@ -4,8 +4,8 @@ const FETCH_RECIPES = gql`
   query FetchRecipes($suggestedCalories: Int!) {
     fetchRecipes(suggestedCalories: $suggestedCalories) {
       calories
-      label
       image
+      label
     }
   }
 `;
