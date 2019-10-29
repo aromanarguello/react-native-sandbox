@@ -1,7 +1,7 @@
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
-import Calculator from "../screens/CalculatorScreen";
-import Recipes from "../screens/RecipesScreen";
+import Calculator from "../screens/Calculator/Calculator.screen";
+import Recipes from "../screens/Recipes/Recipes.screen";
 // import { createTabsNavigator } from "react-navigation-tabs";
 // import { createDrawerNavigator } from "react-navigation-drawer";
 

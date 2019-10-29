@@ -1,11 +1,11 @@
 import React from "react";
 import { ToucableWithoutFeedback, Keyboard } from "react-native";
-import { RecipeContext } from "../context/RecipeContext";
+import { RecipeContext } from "../../context/RecipeContext";
 import { Form } from "native-base";
 import styled from "styled-components";
-import Input from "../components/FormItems/Input";
-import Button from "../components/Buttons/Button";
-import Dropdown from "../components/Dropdowns/Dropdown";
+import Input from "../../components/FormItems/Input";
+import Button from "../../components/Buttons/Button";
+import Dropdown from "../../components/Dropdowns/Dropdown";
 
 const Calculator = ({ navigation }) => {
   const onSubmitHandler = (suggestedCalories, metric) => {
