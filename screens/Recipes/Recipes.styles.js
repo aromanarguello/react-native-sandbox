@@ -27,6 +27,12 @@ const Calories = styled.Text`
   margin-top: 20;
 `;
 
+const Serving = styled.Text`
+  width: 150px;
+  margin-top: 20;
+`
+
+
 const CardContainer = styled.View`
   height: 100%;
   width: 100%;
@@ -37,6 +43,7 @@ const CardContainer = styled.View`
 
 const InfoContainer = styled.View``;
 
+
 export {
   Loading,
   Error,
@@ -45,5 +52,6 @@ export {
   Label,
   Calories,
   CardContainer,
-  InfoContainer
+  InfoContainer,
+  Serving
 };

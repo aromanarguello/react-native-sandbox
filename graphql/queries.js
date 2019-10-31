@@ -6,6 +6,8 @@ const FETCH_RECIPES = gql`
       calories
       image
       label
+      url
+      serving
     }
   }
 `;

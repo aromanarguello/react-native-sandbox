@@ -7,7 +7,8 @@ import {
   Label,
   Calories,
   CardContainer,
-  InfoContainer
+  InfoContainer,
+  Serving
 } from "./Recipes.styles";
 import { Card } from "native-base";
 import { FETCH_RECIPES } from "../../graphql/queries";
@@ -51,12 +52,13 @@ const Recipes = ({
 
   return (
     <CardContainer>
-      {data.fetchRecipes.map(({ image, label, calories }, i) => (
+      {data.fetchRecipes.map(({ image, label, calories, serving, url }, i) => (
         <Card key={i}>
           <CardContent>
             <InfoContainer>
               <Label>{label}</Label>
               <Calories>Calories: {calories}</Calories>
+              <Serving>Serving: {serving}</Serving>
             </InfoContainer>
             <Picture
               style={{ width: 150, height: 150 }}
