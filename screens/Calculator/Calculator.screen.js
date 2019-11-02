@@ -25,7 +25,6 @@ const Calculator = ({ navigation }) => {
       {({
         metric,
         onChangeHandler,
-        isShowingDropdown,
         setIsShowingDropdown,
         activityLevels,
         setMetric,

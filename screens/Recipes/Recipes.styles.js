@@ -13,36 +13,38 @@ const CardContent = styled(CardItem)`
   justify-content: space-around;
   width: 350;
   padding: 0;
+  margin: 0;
 `;
-const Picture = styled.Image``;
+const Picture = styled.Image`
+  margin-right: 20;
+  margin-left: 10;
+`;
 
 const Label = styled.Text`
-  width: 150px;
-  align-self: flex-start;
+  width: 100%;
+  align-self: flex-end;
   margin-top: 20;
+  margin-bottom: 15;
+  font-size: 15;
+  font-weight: bold;
 `;
 
-const Calories = styled.Text`
-  width: 150px;
-  margin-top: 20;
+const RecipeInfo = styled.Text`
+  width: 100%;
 `;
-
-const Serving = styled.Text`
-  width: 150px;
-  margin-top: 20;
-`
-
 
 const CardContainer = styled.View`
   height: 100%;
   width: 100%;
-  flex: 1;
-  justify-content: flex-start;
-  padding-top: 50px;
+  justify-content: space-around;
+  padding: 30px 10px 0 10px;
 `;
 
-const InfoContainer = styled.View``;
-
+const InfoContainer = styled.View`
+  width: 50%;
+  justify-content: flex-start;
+  padding: 0 0 10px 0;
+`;
 
 export {
   Loading,
@@ -50,8 +52,7 @@ export {
   CardContent,
   Picture,
   Label,
-  Calories,
-  CardContainer,
+  RecipeInfo,
   InfoContainer,
-  Serving
+  CardContainer
 };
