@@ -1,5 +1,5 @@
 import React from "react";
-import { ToucableWithoutFeedback, Keyboard } from "react-native";
+import { ScrollView } from "react-native";
 import { RecipeContext } from "../../context/RecipeContext";
 import { Form } from "native-base";
 import styled from "styled-components";
@@ -14,11 +14,6 @@ const Calculator = ({ navigation }) => {
       params: { suggestedCalories, metric }
     });
   };
-  const DismissKeyboard = ({ children }) => (
-    <ToucableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      {children}
-    </ToucableWithoutFeedback>
-  );
 
   return (
     <RecipeContext.Consumer>
@@ -30,63 +25,65 @@ const Calculator = ({ navigation }) => {
         setMetric,
         suggestedCaloricIntake
       }) => (
-        <Form>
-          <Input
-            metricName='weight'
-            placeholder='...'
-            metricLabel='Weight: (lbs)'
-            metric={metric.metricName}
-            keyboardType='numeric'
-            returnKeyType='next'
-            onChangeHandler={onChangeHandler}
-          />
-          <Input
-            metricName='age'
-            placeholder='...'
-            keyboardType='numeric'
-            metricLabel='Age:'
-            returnKeyType='next'
-            metric={metric.metricName}
-            onChangeHandler={onChangeHandler}
-          />
-          <HeightContainer>
+        <ScrollView scrollEnabled='false'>
+          <Form>
             <Input
-              metricName='feet'
+              metricName='weight'
+              placeholder='...'
+              metricLabel='Weight: (lbs)'
+              metric={metric.metricName}
               keyboardType='numeric'
-              placeholder='feet'
-              metricLabel='Height:'
+              returnKeyType='next'
+              onChangeHandler={onChangeHandler}
+            />
+            <Input
+              metricName='age'
+              placeholder='...'
+              keyboardType='numeric'
+              metricLabel='Age:'
               returnKeyType='next'
               metric={metric.metricName}
               onChangeHandler={onChangeHandler}
-              width={92}
             />
-            <Input
-              metricLabel='  '
-              keyboardType='numeric'
-              metricName='inches'
-              placeholder='inches'
-              returnKeyType='next'
-              metric={metric.metricName}
-              onChangeHandler={onChangeHandler}
-              width={92}
+            <HeightContainer>
+              <Input
+                metricName='feet'
+                keyboardType='numeric'
+                placeholder='feet'
+                metricLabel='Height:'
+                returnKeyType='next'
+                metric={metric.metricName}
+                onChangeHandler={onChangeHandler}
+                width={92}
+              />
+              <Input
+                metricLabel='  '
+                keyboardType='numeric'
+                metricName='inches'
+                placeholder='inches'
+                returnKeyType='next'
+                metric={metric.metricName}
+                onChangeHandler={onChangeHandler}
+                width={92}
+              />
+            </HeightContainer>
+            <DropdownContainer>
+              <Dropdown
+                activityLevels={activityLevels}
+                metric={metric}
+                setMetric={setMetric}
+                setIsShowingDropdown={setIsShowingDropdown}
+              />
+            </DropdownContainer>
+            <Button
+              onSubmitHandler={() =>
+                onSubmitHandler(suggestedCaloricIntake, metric)
+              }
+              title='Submit'
+              width={278}
             />
-          </HeightContainer>
-          <DropdownContainer>
-            <Dropdown
-              activityLevels={activityLevels}
-              metric={metric}
-              setMetric={setMetric}
-              setIsShowingDropdown={setIsShowingDropdown}
-            />
-          </DropdownContainer>
-          <Button
-            onSubmitHandler={() =>
-              onSubmitHandler(suggestedCaloricIntake, metric)
-            }
-            title='Submit'
-            width={278}
-          />
-        </Form>
+          </Form>
+        </ScrollView>
       )}
     </RecipeContext.Consumer>
   );

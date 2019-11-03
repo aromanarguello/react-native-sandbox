@@ -17,10 +17,10 @@ const CustomInput = ({
       <Label>{metricLabel}</Label>
       <MetricInput regular width={width}>
         <Input
+          keyboardType='numeric'
           placeholder={placeholder}
           onChange={e => onChangeHandler(e, metricName)}
           value={metric}
-          // keyboardType={keyboardType}
           returnKeyType={returnKeyType}
         />
       </MetricInput>

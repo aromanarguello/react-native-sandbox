@@ -36,7 +36,6 @@ const RecipeInfo = styled.Text`
 const CardContainer = styled.View`
   height: 100%;
   width: 100%;
-  justify-content: space-around;
   padding: 30px 10px 0 10px;
 `;
 
