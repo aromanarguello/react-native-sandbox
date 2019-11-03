@@ -3,6 +3,7 @@ import Navigator from "./navigation/Navigation";
 import { RecipeContextProvider } from "./context/RecipeContext";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
+import { Theme } from "./utils/styles/Theme";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({
@@ -18,7 +19,9 @@ export default App = () => {
   return (
     <RecipeContextProvider>
       <ApolloProvider client={client}>
-        <Navigator />
+        <Theme>
+          <Navigator />
+        </Theme>
       </ApolloProvider>
     </RecipeContextProvider>
   );

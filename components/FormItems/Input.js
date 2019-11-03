@@ -1,6 +1,5 @@
 import React from "react";
-import { InputContainer, MetricInput, Label } from "./Input.styles";
-import { Input } from "native-base";
+import { InputContainer, Label, StyledInput } from "./Input.styles";
 
 const CustomInput = ({
   onChangeHandler,
@@ -15,15 +14,14 @@ const CustomInput = ({
   return (
     <InputContainer>
       <Label>{metricLabel}</Label>
-      <MetricInput regular width={width}>
-        <Input
-          keyboardType='numeric'
-          placeholder={placeholder}
-          onChange={e => onChangeHandler(e, metricName)}
-          value={metric}
-          returnKeyType={returnKeyType}
-        />
-      </MetricInput>
+      <StyledInput
+        width={width}
+        keyboardType={keyboardType}
+        placeholder={placeholder}
+        onChange={e => onChangeHandler(e, metricName)}
+        value={metric}
+        returnKeyType={returnKeyType}
+      />
     </InputContainer>
   );
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 const StyledButton = styled.View`
   width: ${({ width }) => (width ? width : 200)};
   height: ${({ height }) => (height ? height : 70)};
-  background-color: #53dd6c;
+  background-color: ${({ theme }) => theme.colors.successGreen};
   margin: 0 auto;
   margin-top: 45;
   align-items: center;

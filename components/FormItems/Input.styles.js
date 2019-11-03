@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { Input } from "native-base";
 import { Item } from "native-base";
 
 const InputContainer = styled.View`
@@ -11,17 +11,20 @@ const InputContainer = styled.View`
 `;
 
 const MetricInput = styled(Item)`
-  width: ${({ width }) => (width ? width : 200)};
-  height: 40;
   margin-top: 5;
-  margin-left: 10;
-  padding-left: 10;
-  border-color: #95a5a6;
   border-width: 1;
+`;
+
+const StyledInput = styled(Input)`
   border-radius: 2.5;
+  padding-left: 10;
+  margin-left: 10;
+  height: 40;
+  width: ${({ width }) => (width ? width : 200)};
+  background-color: ${({ theme }) => theme.colors.darkGray};
 `;
 
 const Label = styled.Text`
   margin-left: 10;
 `;
-export { InputContainer, MetricInput, Label };
+export { InputContainer, MetricInput, Label, StyledInput };
