@@ -26,25 +26,29 @@ const Calculator = ({ navigation }) => {
         suggestedCaloricIntake
       }) => (
         <Container scrollEnabled='false'>
-          <Form>
-            <Input
-              metricName='weight'
-              placeholder='...'
-              metricLabel='Weight(lbs)'
-              metric={metric.metricName}
-              keyboardType='numeric'
-              returnKeyType='next'
-              onChangeHandler={onChangeHandler}
-            />
-            <Input
-              metricName='age'
-              placeholder='...'
-              keyboardType='numeric'
-              metricLabel='Age'
-              returnKeyType='next'
-              metric={metric.metricName}
-              onChangeHandler={onChangeHandler}
-            />
+          <StyledForm>
+            <MetricInputContainer>
+              <Input
+                metricName='weight'
+                placeholder='...'
+                metricLabel='Weight(lbs)'
+                metric={metric.metricName}
+                keyboardType='numeric'
+                returnKeyType='next'
+                onChangeHandler={onChangeHandler}
+                width={300}
+              />
+              <Input
+                metricName='age'
+                placeholder='...'
+                keyboardType='numeric'
+                metricLabel='Age'
+                returnKeyType='next'
+                metric={metric.metricName}
+                onChangeHandler={onChangeHandler}
+                width={300}
+              />
+            </MetricInputContainer>
             <HeightContainer>
               <Input
                 metricName='feet'
@@ -82,34 +86,58 @@ const Calculator = ({ navigation }) => {
               title='Submit'
               width={278}
             />
-          </Form>
+          </StyledForm>
         </Container>
       )}
     </RecipeContext.Consumer>
   );
 };
 
+Calculator.navigationOptions = {
+  headerTitle: "prepi",
+  headerStyle: {
+    backgroundColor: "#f2f5fa",
+    borderBottom: "none"
+  },
+  headerTintColor: "#1f4188"
+};
+
 export default Calculator;
+
+const MetricInputContainer = styled.View`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 200;
+`;
 
 const DropdownContainer = styled.View`
   width: 100%;
   height: 100;
   margin-top: 45;
-  justify-content: center;
+  align-items: center;
 `;
 
 const HeightContainer = styled.View`
-  width: 80%;
-  height: 80;
+  width: 100%;
+  height: 100;
   flex-direction: row;
-  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 15;
+  padding-left: 55;
   margin-bottom: 15;
 `;
 
 const Container = styled.ScrollView`
   background-color: ${({ theme }) => theme.colors.lightGray};
+  width: 100%;
   height: 100%;
-  flex-direction: column;
-  align-content: center;
+`;
+
+const StyledForm = styled(Form)`
+  flex: 1;
 `;

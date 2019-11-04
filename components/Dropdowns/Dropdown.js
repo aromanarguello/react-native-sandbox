@@ -4,7 +4,10 @@ import { Picker, Item } from "native-base";
 
 const DropdownContainer = styled(Item)`
   margin-top: 0;
+  width: 300;
 `;
+
+const StyledPicker = styled(Picker)``;
 
 const Dropdown = ({
   activityLevels,
@@ -14,7 +17,7 @@ const Dropdown = ({
 }) => {
   return (
     <DropdownContainer picker>
-      <Picker
+      <StyledPicker
         mode='dropdown'
         selectedValue={metric.activityLevel}
         onValueChange={itemValue => {
@@ -22,9 +25,9 @@ const Dropdown = ({
           setIsShowingDropdown(false);
         }}>
         {activityLevels.map(({ level, multiplier }, i) => (
-          <Picker.Item label={level} value={multiplier} key={i} />
+          <StyledPicker.Item label={level} value={multiplier} key={i} />
         ))}
-      </Picker>
+      </StyledPicker>
     </DropdownContainer>
   );
 };

@@ -10,9 +10,7 @@ const InputContainer = styled.View`
 `;
 
 const StyledInput = styled(Input)`
-  border-radius: 2.5;
-  padding-left: 10;
-  margin-left: 10;
+  border-radius: 5;
   width: ${({ width }) => (width ? width : 200)};
   background-color: ${({ theme }) => theme.colors.darkGray};
 `;

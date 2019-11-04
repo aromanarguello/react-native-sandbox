@@ -5,7 +5,7 @@ const StyledButton = styled.View`
   height: ${({ height }) => (height ? height : 70)};
   background-color: ${({ theme }) => theme.colors.successBlue};
   margin: 0 auto;
-  margin-top: 45;
+
   align-items: center;
   justify-content: center;
   border-radius: 5;
