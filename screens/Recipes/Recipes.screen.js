@@ -22,7 +22,7 @@ const Recipes = ({
 }) => {
   const { data, loading, error } = useQuery(FETCH_RECIPES, {
     variables: {
-      suggestedCalories: 2500
+      suggestedCalories: params.suggestedCalories
     }
   });
   const handlePress = url => {

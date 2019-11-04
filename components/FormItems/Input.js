@@ -1,6 +1,6 @@
 import React from "react";
 import { InputContainer, Label, StyledInput } from "./Input.styles";
-
+import * as Font from "expo-font";
 const CustomInput = ({
   onChangeHandler,
   metric,
@@ -11,7 +11,13 @@ const CustomInput = ({
   keyboardType,
   returnKeyType
 }) => {
-  return (
+  const [isLoaded, setIsLoaded] = React.useState(false);
+  React.useEffect(() => {
+    Font.loadAsync({
+      raleway: require("../../assets/Raleway-Bold.ttf")
+    }).then(() => setIsLoaded(true));
+  });
+  return isLoaded ? (
     <InputContainer>
       <Label>{metricLabel}</Label>
       <StyledInput
@@ -23,7 +29,7 @@ const CustomInput = ({
         returnKeyType={returnKeyType}
       />
     </InputContainer>
-  );
+  ) : null;
 };
 
 CustomInput.displayName = "CustomInput";

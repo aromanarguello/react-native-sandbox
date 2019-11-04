@@ -4,6 +4,7 @@ import { RecipeContextProvider } from "./context/RecipeContext";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { Theme } from "./utils/styles/Theme";
+import * as Font from "expo-font";
 
 const cache = new InMemoryCache();
 const link = new HttpLink({

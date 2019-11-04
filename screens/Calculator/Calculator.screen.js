@@ -25,12 +25,12 @@ const Calculator = ({ navigation }) => {
         setMetric,
         suggestedCaloricIntake
       }) => (
-        <ScrollView scrollEnabled='false'>
+        <Container scrollEnabled='false'>
           <Form>
             <Input
               metricName='weight'
               placeholder='...'
-              metricLabel='Weight: (lbs)'
+              metricLabel='Weight(lbs)'
               metric={metric.metricName}
               keyboardType='numeric'
               returnKeyType='next'
@@ -40,7 +40,7 @@ const Calculator = ({ navigation }) => {
               metricName='age'
               placeholder='...'
               keyboardType='numeric'
-              metricLabel='Age:'
+              metricLabel='Age'
               returnKeyType='next'
               metric={metric.metricName}
               onChangeHandler={onChangeHandler}
@@ -50,7 +50,7 @@ const Calculator = ({ navigation }) => {
                 metricName='feet'
                 keyboardType='numeric'
                 placeholder='feet'
-                metricLabel='Height:'
+                metricLabel='Height'
                 returnKeyType='next'
                 metric={metric.metricName}
                 onChangeHandler={onChangeHandler}
@@ -83,7 +83,7 @@ const Calculator = ({ navigation }) => {
               width={278}
             />
           </Form>
-        </ScrollView>
+        </Container>
       )}
     </RecipeContext.Consumer>
   );
@@ -99,10 +99,17 @@ const DropdownContainer = styled.View`
 `;
 
 const HeightContainer = styled.View`
-  width: 100%;
+  width: 80%;
   height: 80;
   flex-direction: row;
   display: flex;
   margin-top: 15;
   margin-bottom: 15;
+`;
+
+const Container = styled.ScrollView`
+  background-color: ${({ theme }) => theme.colors.lightGray};
+  height: 100%;
+  flex-direction: column;
+  align-content: center;
 `;
