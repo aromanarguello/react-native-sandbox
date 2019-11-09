@@ -16,7 +16,7 @@ const StyledInput = styled(Input)`
 `;
 
 const Label = styled.Text`
-  margin-left: 10;
+  margin-left: 4;
   font-weight: bold;
   font-size: 15;
   font-family: ${({ theme }) => theme.font};

@@ -1,8 +1,12 @@
 import React from "react";
-import { ScrollView } from "react-native";
 import { RecipeContext } from "../../context/RecipeContext";
-import { Form } from "native-base";
-import styled from "styled-components";
+import {
+  MetricInputContainer,
+  DropdownContainer,
+  HeightContainer,
+  Container,
+  StyledForm
+} from "./Calculator.styles";
 import Input from "../../components/FormItems/Input";
 import Button from "../../components/Buttons/Button";
 import Dropdown from "../../components/Dropdowns/Dropdown";
@@ -83,7 +87,7 @@ const Calculator = ({ navigation }) => {
               onSubmitHandler={() =>
                 onSubmitHandler(suggestedCaloricIntake, metric)
               }
-              title='Submit'
+              title='Next'
               width={278}
             />
           </StyledForm>
@@ -103,41 +107,3 @@ Calculator.navigationOptions = {
 };
 
 export default Calculator;
-
-const MetricInputContainer = styled.View`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding-right: 200;
-`;
-
-const DropdownContainer = styled.View`
-  width: 100%;
-  height: 100;
-  margin-top: 45;
-  align-items: center;
-`;
-
-const HeightContainer = styled.View`
-  width: 100%;
-  height: 100;
-  flex-direction: row;
-  align-self: center;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 15;
-  padding-left: 55;
-  margin-bottom: 15;
-`;
-
-const Container = styled.ScrollView`
-  background-color: ${({ theme }) => theme.colors.lightGray};
-  width: 100%;
-  height: 100%;
-`;
-
-const StyledForm = styled(Form)`
-  flex: 1;
-`;

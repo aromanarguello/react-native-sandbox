@@ -5,7 +5,6 @@ const StyledButton = styled.View`
   height: ${({ height }) => (height ? height : 70)};
   background-color: ${({ theme }) => theme.colors.successBlue};
   margin: 0 auto;
-
   align-items: center;
   justify-content: center;
   border-radius: 5;
@@ -14,7 +13,7 @@ const StyledButton = styled.View`
 const Text = styled.Text`
   font-size: ${({ fontSize }) => (fontSize ? fontSize : 36)};
   color: white;
-  letter-spacing: 2;
+  letter-spacing: 2.5;
 `;
 
 export { StyledButton, Text };
