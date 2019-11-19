@@ -8,7 +8,7 @@ import CustomizeMeal from "../screens/CustomizeMeals/CustomizeMeals.screen";
 
 const RecipesNavigator = createStackNavigator({
   Calculator,
-  CustomizeMeal,
+  // CustomizeMeal,
   Recipes
 });
 

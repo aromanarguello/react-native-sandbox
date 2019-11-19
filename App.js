@@ -1,6 +1,5 @@
 import React from "react";
 import Navigator from "./navigation/Navigation";
-import { RecipeContextProvider } from "./context/RecipeContext";
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
 import { Theme } from "./utils/styles/Theme";
@@ -18,12 +17,10 @@ const client = new ApolloClient({
 
 export default App = () => {
   return (
-    <RecipeContextProvider>
-      <ApolloProvider client={client}>
-        <Theme>
-          <Navigator />
-        </Theme>
-      </ApolloProvider>
-    </RecipeContextProvider>
+    <ApolloProvider client={client}>
+      <Theme>
+        <Navigator />
+      </Theme>
+    </ApolloProvider>
   );
 };
