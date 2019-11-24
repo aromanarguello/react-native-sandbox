@@ -1,0 +1,8 @@
+e5c22d5e4b7ee4a37b1661df6c4bb99a
+'use strict';
+
+if (process.env.NODE_ENV === "production") {
+  module.exports = require("./memoize.cjs.prod.js");
+} else {
+  module.exports = require("./memoize.cjs.dev.js");
+}

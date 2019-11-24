@@ -9,10 +9,10 @@ const Container = styled.View`
 
 const Text = styled.Text``;
 
-const ViewBanner = () => {
+const ViewBanner = ({ suggestedCaloricIntake }) => {
   return (
     <Container>
-      <Text>100</Text>
+      <Text>{suggestedCaloricIntake}</Text>
     </Container>
   );
 };

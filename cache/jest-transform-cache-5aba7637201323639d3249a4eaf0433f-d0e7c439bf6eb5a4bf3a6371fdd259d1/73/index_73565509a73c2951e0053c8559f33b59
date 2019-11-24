@@ -1,0 +1,4 @@
+0dcae0dc612ecd768c7347639a384f6b
+'use strict';
+
+module.exports = require('./colors.json');

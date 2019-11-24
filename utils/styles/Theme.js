@@ -1,6 +1,6 @@
 import React from "react";
-import { ThemeProvider } from "styled-components";
-
+import { ThemeProvider } from "styled-components/native";
+``;
 const theme = {
   colors: {
     darkGray: "#dee1e8",
@@ -8,7 +8,7 @@ const theme = {
     successGreen: "#53dd6c",
     successBlue: "#1f4188"
   },
-  font: "Avenir"
+  font: "Roboto"
 };
 
 export const Theme = ({ children }) => {

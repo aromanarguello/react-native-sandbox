@@ -35,9 +35,8 @@ const Calculator = ({ navigation }) => {
   }, [Object.keys(metric).length === 5, metric.activityLevel]);
 
   const onSubmitHandler = (suggestedCalories, metric) => {
-    console.log(suggestedCaloricIntake);
     navigation.navigate({
-      routeName: "Recipes",
+      routeName: "CustomizeMeal",
       params: { suggestedCalories, metric }
     });
   };
@@ -70,8 +69,9 @@ const Calculator = ({ navigation }) => {
           <Input
             metricName="weight"
             placeholder="..."
-            metricLabel="Weight(lbs)"
+            metricLabel="How much do you weight?"
             metric={metric.metricName}
+            placeholder="lbs"
             keyboardType="numeric"
             returnKeyType="next"
             onChangeHandler={onChangeHandler}

@@ -1,0 +1,14 @@
+847517dc71e5e7e6998e55f185102251
+var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
+
+var _reactNative = require("@testing-library/react-native");
+
+var _Button = _interopRequireDefault(require("./Button"));
+
+test("accepts title", function () {
+  var comp = (0, _reactNative.render)(React.createElement(_Button.default, {
+    title: "click me"
+  }));
+  console.log(comp);
+});
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkJ1dHRvbi50ZXN0LmpzIl0sIm5hbWVzIjpbInRlc3QiLCJjb21wIiwiY29uc29sZSIsImxvZyJdLCJtYXBwaW5ncyI6Ijs7QUFBQTs7QUFDQTs7QUFDQUEsSUFBSSxDQUFDLGVBQUQsRUFBa0IsWUFBTTtBQUMxQixNQUFNQyxJQUFJLEdBQUcseUJBQU8sb0JBQUMsZUFBRDtBQUFRLElBQUEsS0FBSyxFQUFDO0FBQWQsSUFBUCxDQUFiO0FBQ0FDLEVBQUFBLE9BQU8sQ0FBQ0MsR0FBUixDQUFZRixJQUFaO0FBQ0QsQ0FIRyxDQUFKIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgcmVuZGVyIH0gZnJvbSBcIkB0ZXN0aW5nLWxpYnJhcnkvcmVhY3QtbmF0aXZlXCI7XG5pbXBvcnQgQnV0dG9uIGZyb20gXCIuL0J1dHRvblwiO1xudGVzdChcImFjY2VwdHMgdGl0bGVcIiwgKCkgPT4ge1xuICBjb25zdCBjb21wID0gcmVuZGVyKDxCdXR0b24gdGl0bGU9XCJjbGljayBtZVwiIC8+KTtcbiAgY29uc29sZS5sb2coY29tcCk7XG59KTtcbiJdfQ==
