@@ -1,6 +1,6 @@
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
-``;
+
 const theme = {
   colors: {
     darkGray: "#dee1e8",
