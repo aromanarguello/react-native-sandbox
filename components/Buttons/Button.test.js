@@ -1,20 +1,20 @@
-import React from "react";
-import { renderWithTheme } from "../../utils/tests/utils";
-import { fireEvent } from "@testing-library/react-native";
-import Button from "./Button";
+import React from 'react';
+import { fireEvent } from '@testing-library/react-native';
+import { renderWithTheme } from '../../utils/tests/utils';
+import Button from './Button';
 
-test("accepts title", () => {
-  const { getByTestId, ...rest } = renderWithTheme(<Button title="click me" />);
-  const buttonNode = getByTestId("button");
+test('accepts title', () => {
+  const { getByTestId } = renderWithTheme(<Button title="click me" />);
+  const buttonNode = getByTestId('button');
   expect(buttonNode).toBeTruthy();
 });
 
-test("can click", () => {
+test('can click', () => {
   const mockFn = jest.fn();
-  const { getByTestId, ...rest } = renderWithTheme(
+  const { getByTestId } = renderWithTheme(
     <Button onSubmitHandler={mockFn} title="click me" />
   );
-  const buttonNode = getByTestId("button");
+  const buttonNode = getByTestId('button');
   fireEvent.press(buttonNode);
   expect(mockFn).toHaveBeenCalledTimes(1);
 });

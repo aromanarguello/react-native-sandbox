@@ -1,6 +1,6 @@
-import React from "react";
-import { StyledButton, Text } from "./Button.styles";
-import { TouchableOpacity } from "react-native";
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { StyledButton, Text } from './Button.styles';
 
 const Button = ({
   title,
@@ -9,20 +9,18 @@ const Button = ({
   height,
   fontSize,
   handlerArgs
-}) => {
-  return (
-    <TouchableOpacity>
-      <StyledButton width={width} height={height}>
-        <Text
-          testID="button"
-          fontSize={fontSize}
-          onPress={() => onSubmitHandler(handlerArgs)}
-        >
-          {title}
-        </Text>
-      </StyledButton>
-    </TouchableOpacity>
-  );
-};
+}) => (
+  <TouchableOpacity>
+    <StyledButton width={width} height={height}>
+      <Text
+        testID="button"
+        fontSize={fontSize}
+        onPress={() => onSubmitHandler(handlerArgs)}
+      >
+        {title}
+      </Text>
+    </StyledButton>
+  </TouchableOpacity>
+);
 
 export default Button;
