@@ -27,6 +27,7 @@
     "styled-components": "^4.4.0"
   },
   "devDependencies": {
+    "@testing-library/jest-native": "^3.0.3",
     "@testing-library/react-native": "^5.0.1",
     "babel-preset-expo": "^7.0.0",
     "expo-font": "^7.0.0",
@@ -36,26 +37,5 @@
     "react-navigation": "^4.0.10",
     "react-test-renderer": "^16.9.0"
   },
-  "private": true,
-  "jest": {
-    "preset": "react-native",
-    "cacheDirectory": "./cache",
-    "coveragePathIgnorePatterns": [
-      "./app/utils/vendor"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "jsx",
-      "node"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "statements": 80
-      }
-    },
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)"
-    ]
-  }
+  "private": true
 }
