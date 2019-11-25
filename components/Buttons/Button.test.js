@@ -1,13 +1,11 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { renderWithTheme } from "../../utils/tests/utils";
 import Button from "./Button";
-import { Theme } from "../../utils/styles/Theme";
 
 test("accepts title", () => {
-  const comp = render(
-    <Theme>
-      <Button title="click me" />
-    </Theme>
-  );
-  console.log(comp);
+  const { getByTestId, ...rest } = renderWithTheme(<Button title="click me" />);
+  console.log(rest);
+  const buttonNode = getByTestId("button");
+  console.log(buttonNode.child);
+  expect(buttonNode).toBeTruthy();
 });

@@ -11,3 +11,24 @@ web-build/
 web-report/
 
 cache
+coverage/clover.xml
+
+coverage/coverage-final.json
+
+coverage/lcov-report/components/Buttons/Button.js.html
+
+coverage/lcov-report/components/Buttons/Button.styles.js.html
+
+coverage/lcov-report/components/Buttons/index.html
+
+coverage/lcov-report/index.html
+
+coverage/lcov-report/utils/styles/index.html
+
+coverage/lcov-report/utils/styles/Theme.js.html
+
+coverage/lcov-report/utils/tests/index.html
+
+coverage/lcov-report/utils/tests/utils.js.html
+
+coverage/lcov.info

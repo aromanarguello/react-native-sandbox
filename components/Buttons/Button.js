@@ -13,7 +13,11 @@ const Button = ({
   return (
     <TouchableOpacity>
       <StyledButton width={width} height={height}>
-        <Text fontSize={fontSize} onPress={() => onSubmitHandler(handlerArgs)}>
+        <Text
+          testID="button"
+          fontSize={fontSize}
+          onPress={() => onSubmitHandler(handlerArgs)}
+        >
           {title}
         </Text>
       </StyledButton>
