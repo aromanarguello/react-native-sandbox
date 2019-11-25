@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 import { StyledButton, Text } from './Button.styles';
 
 const Button = ({
@@ -8,7 +9,7 @@ const Button = ({
   onSubmitHandler,
   height,
   fontSize,
-  handlerArgs
+  handlerArgs,
 }) => (
   <TouchableOpacity>
     <StyledButton width={width} height={height}>
@@ -22,5 +23,14 @@ const Button = ({
     </StyledButton>
   </TouchableOpacity>
 );
+
+Button.propTypes = {
+  title: PropTypes.string.isRequired,
+  width: PropTypes.number,
+  onSubmitHandler: PropTypes.func,
+  height: PropTypes.number,
+  fontSize: PropTypes.number,
+  handlerArgs: PropTypes.any,
+};
 
 export default Button;

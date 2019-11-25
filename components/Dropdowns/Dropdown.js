@@ -1,6 +1,6 @@
-import React, { memo } from "react";
-import styled from "styled-components";
-import { Picker, Item } from "native-base";
+import React from 'react';
+import styled from 'styled-components';
+import { Picker, Item } from 'native-base';
 
 const DropdownContainer = styled(Item)`
   margin-top: 0;
@@ -13,17 +13,18 @@ const Dropdown = ({
   activityLevels,
   metric,
   setMetric,
-  setIsShowingDropdown
+  setIsShowingDropdown,
 }) => {
   return (
     <DropdownContainer picker>
       <StyledPicker
-        mode='dropdown'
+        mode="dropdown"
         selectedValue={metric.activityLevel}
         onValueChange={itemValue => {
           setMetric({ ...metric, activityLevel: itemValue });
           setIsShowingDropdown(false);
-        }}>
+        }}
+      >
         {activityLevels.map(({ level, multiplier }, i) => (
           <StyledPicker.Item label={level} value={multiplier} key={i} />
         ))}
