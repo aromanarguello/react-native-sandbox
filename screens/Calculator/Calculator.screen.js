@@ -1,9 +1,9 @@
 import React from 'react';
+import { object } from 'prop-types';
 import { MetricInputContainer, DropdownContainer, HeightContainer, Container, StyledForm } from './Calculator.styles';
 import Input from '../../components/FormItems/Input';
 import Button from '../../components/Buttons/Button';
 import Dropdown from '../../components/Dropdowns/Dropdown';
-// import ViewBanner from "../../components/Banners/ViewBanner";
 
 const activityLevels = [
   // { level: "Basal Metabolic Rate (BMR)", multiplier: 1 },
@@ -23,6 +23,15 @@ const Calculator = ({ navigation }) => {
     activityLevel: activityLevels[0].multiplier,
   });
 
+  const calculateCalorieIntake = gender => {
+    const totalInches = Number(metric.feet) * 12 + Number(metric.inches);
+    const formulas = {
+      men: 66 + 6.23 * Number(metric.weight) + 12.7 * totalInches - 6.8 * Number(metric.age),
+      women: 655 + 4.35 * Number(metric.weight) + 4.7 * totalInches - 4.7 * Number(metric.age),
+    };
+    return Math.floor(formulas[gender] * metric.activityLevel);
+  };
+
   React.useEffect(() => {
     setCaloricIntake(calculateCalorieIntake('men'));
   }, [Object.keys(metric).length === 5, metric.activityLevel]);
@@ -36,15 +45,6 @@ const Calculator = ({ navigation }) => {
 
   const onChangeHandler = ({ nativeEvent: { text } }, metricName) => {
     setMetric(current => ({ ...current, [metricName]: text }));
-  };
-
-  const calculateCalorieIntake = gender => {
-    const totalInches = Number(metric.feet) * 12 + Number(metric.inches);
-    const formulas = {
-      men: 66 + 6.23 * Number(metric.weight) + 12.7 * totalInches - 6.8 * Number(metric.age),
-      women: 655 + 4.35 * Number(metric.weight) + 4.7 * totalInches - 4.7 * Number(metric.age),
-    };
-    return Math.floor(formulas[gender] * metric.activityLevel);
   };
 
   return (
@@ -110,6 +110,10 @@ Calculator.navigationOptions = {
     borderBottom: 'none',
   },
   headerTintColor: '#1f4188',
+};
+
+Calculator.propTypes = {
+  navigation: object,
 };
 
 export default Calculator;
