@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Input } from "native-base";
+import styled from 'styled-components';
+import { Input } from 'native-base';
 
 const InputContainer = styled.View`
   width: 50%;
@@ -14,8 +14,8 @@ const StyledInput = styled(Input)`
   width: ${({ width }) => (width ? width : 200)};
   background-color: ${({
     theme: {
-      colors: { darkGray }
-    }
+      colors: { darkGray },
+    },
   }) => darkGray};
 `;
 
@@ -25,7 +25,7 @@ const Label = styled.Text`
   padding-right: 0;
   font-weight: bold;
   font-size: 15;
-  font-family: ${({ theme: { font } }) => font};
+  /* font-family: ${({ theme: { font } }) => font}; */
 `;
 
 export { InputContainer, Label, StyledInput };
