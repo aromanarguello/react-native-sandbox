@@ -7,13 +7,12 @@ test('accepts title', () => {
   const { getByTestId } = renderWithTheme(<Button title="click me" />);
   const buttonNode = getByTestId('button');
   expect(buttonNode).toBeTruthy();
+  expect(buttonNode.props.children).toMatch('click me');
 });
 
 test('can click', () => {
   const mockFn = jest.fn();
-  const { getByTestId } = renderWithTheme(
-    <Button onSubmitHandler={mockFn} title="click me" />
-  );
+  const { getByTestId } = renderWithTheme(<Button onSubmitHandler={mockFn} title="click me" />);
   const buttonNode = getByTestId('button');
   fireEvent.press(buttonNode);
   expect(mockFn).toHaveBeenCalledTimes(1);

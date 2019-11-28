@@ -3,21 +3,10 @@ import { TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { StyledButton, Text } from './Button.styles';
 
-const Button = ({
-  title,
-  width,
-  onSubmitHandler,
-  height,
-  fontSize,
-  handlerArgs,
-}) => (
+const Button = ({ title, width, onSubmitHandler, height, fontSize, handlerArgs }) => (
   <TouchableOpacity>
     <StyledButton width={width} height={height}>
-      <Text
-        testID="button"
-        fontSize={fontSize}
-        onPress={() => onSubmitHandler(handlerArgs)}
-      >
+      <Text testID="button" fontSize={fontSize} onPress={() => onSubmitHandler(handlerArgs)}>
         {title}
       </Text>
     </StyledButton>
