@@ -1,14 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
+import { Text } from 'react-native';
 import { render } from '@testing-library/react-native';
 import { Theme } from './Theme';
-import Button from '../../components/Buttons/Button';
+
+// TODO: figure out why theme object is empty in SC
+const StyledText = styled(Text)``;
+const TestComponent = () => <StyledText testID="test">Hello</StyledText>;
 
 test('can render children', () => {
   const { getByTestId } = render(
     <Theme>
-      <Button title="click me" />
+      <TestComponent />
     </Theme>
   );
-  const buttonNode = getByTestId('button');
-  expect(buttonNode.props.children).toMatch('click me');
+  const testNode = getByTestId('test');
+  expect(testNode.props.children).toMatch('Hello');
 });
