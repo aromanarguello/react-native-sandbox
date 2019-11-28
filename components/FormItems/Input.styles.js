@@ -11,7 +11,7 @@ const InputContainer = styled.View`
 
 const StyledInput = styled(Input)`
   border-radius: 5;
-  width: ${({ width }) => (width ? width : 200)};
+  width: ${({ width }) => width || 200};
   background-color: ${({
     theme: {
       colors: { darkGray },
@@ -21,7 +21,7 @@ const StyledInput = styled(Input)`
 
 const Label = styled.Text`
   margin-left: 4;
-  width: ${({ width }) => (width ? width : 200)};
+  width: ${({ width }) => width || 200};
   padding-right: 0;
   font-weight: bold;
   font-size: 15;

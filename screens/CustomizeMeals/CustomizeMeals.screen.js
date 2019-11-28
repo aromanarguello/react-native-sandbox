@@ -1,7 +1,8 @@
-import React from "react";
-import styled from "styled-components";
-import { Container, StyledForm } from "../Calculator/Calculator.styles";
-import Input from "../../components/FormItems/Input";
+import React from 'react';
+import styled from 'styled-components';
+import { number, shape } from 'prop-types';
+import { Container, StyledForm } from '../Calculator/Calculator.styles';
+import Input from '../../components/FormItems/Input';
 
 const TextContainer = styled.View`
   width: 100%;
@@ -20,12 +21,12 @@ const InputContainer = styled.View`
 
 const CustomizeMeal = ({
   navigation: {
-    state: { params }
-  }
+    state: { params },
+  },
 }) => (
   <Container>
     <TextContainer>
-      <CaloriesText>Suggested Calories: 2500</CaloriesText>
+      <CaloriesText>Suggested Calories: {params.suggestedCalories}</CaloriesText>
     </TextContainer>
     <StyledForm>
       <InputContainer>
@@ -36,5 +37,17 @@ const CustomizeMeal = ({
     </StyledForm>
   </Container>
 );
+
+CustomizeMeal.displayName = 'CustomizeMealScreen';
+
+CustomizeMeal.propTypes = {
+  navigation: shape({
+    state: shape({
+      params: shape({
+        suggestedCalories: number.isRequired,
+      }),
+    }),
+  }),
+};
 
 export default CustomizeMeal;

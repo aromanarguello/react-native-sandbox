@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { Form } from "native-base";
+import styled from 'styled-components';
+import { Form } from 'native-base';
+
 const MetricInputContainer = styled.View`
   width: 100%;
   display: flex;
@@ -39,10 +40,4 @@ const StyledForm = styled(Form)`
   width: 100%;
 `;
 
-export {
-  MetricInputContainer,
-  DropdownContainer,
-  HeightContainer,
-  Container,
-  StyledForm
-};
+export { MetricInputContainer, DropdownContainer, HeightContainer, Container, StyledForm };

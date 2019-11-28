@@ -11,6 +11,8 @@ web-build/
 web-report/
 
 cache
+coverage
+
 coverage/clover.xml
 
 coverage/coverage-final.json

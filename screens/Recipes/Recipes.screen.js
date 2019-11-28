@@ -1,4 +1,5 @@
 import React from 'react';
+import { shape, number } from 'prop-types';
 import { Linking } from 'react-native';
 import { Card } from 'native-base';
 import { useQuery } from '@apollo/react-hooks';
@@ -81,6 +82,16 @@ const Recipes = ({
       ))}
     </CardContainer>
   );
+};
+
+Recipes.propTypes = {
+  navigation: shape({
+    state: shape({
+      params: shape({
+        suggestedCalories: number.isRequired,
+      }),
+    }),
+  }),
 };
 
 export default Recipes;
