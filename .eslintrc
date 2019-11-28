@@ -26,6 +26,9 @@
     "object-curly-newline": "off",
     "react/jsx-one-expression-per-line": "off",
     "comma-dangle": "off",
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "max-len": ["warn", {
+      "code": 100
+    }]
   }
 }
