@@ -1,10 +1,10 @@
 import React from 'react';
-import { shape, number } from 'prop-types';
+import { shape, number, string } from 'prop-types';
 import { Linking } from 'react-native';
 import { Card } from 'native-base';
 import { useQuery } from '@apollo/react-hooks';
 import { FETCH_RECIPES } from '../../graphql/queries';
-import Button from '../../components/Buttons/Button';
+import { Button } from '../../components';
 import {
   Loading,
   Error,
@@ -18,12 +18,17 @@ import {
 
 const Recipes = ({
   navigation: {
-    state: { params },
+    state: {
+      params: { meal },
+    },
   },
 }) => {
   const { data, loading, error } = useQuery(FETCH_RECIPES, {
     variables: {
-      suggestedCalories: params.meal.suggestedCalories,
+      suggestedCalories: meal.suggestedCalories,
+      breakfastMeal: meal.individualMeal.breakfast,
+      lunchMeal: meal.individualMeal.lunch,
+      dinnerMeal: meal.individualMeal.dinner,
     },
   });
   const handlePress = url => {
@@ -76,11 +81,7 @@ const Recipes = ({
                 onSubmitHandler={handlePress}
               />
             </InfoContainer>
-            <Picture
-              style={{ width: 150, height: 150 }}
-              source={{ uri: image }}
-              accessibilityLabel="meal image"
-            />
+            <Picture source={{ uri: image }} accessibilityLabel="meal image" />
           </CardContent>
         </Card>
       ))}
@@ -88,12 +89,19 @@ const Recipes = ({
   );
 };
 
+Recipes.displayName = 'Recipes';
+
 Recipes.propTypes = {
   navigation: shape({
     state: shape({
       params: shape({
         meal: shape({
           suggestedCalories: number.isRequired,
+          individualMeal: shape({
+            breakfast: string.isRequired,
+            lunch: string.isRequired,
+            dinner: string.isRequired,
+          }),
         }),
       }),
     }),

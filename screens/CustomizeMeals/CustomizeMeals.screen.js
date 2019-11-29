@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { number, shape, string } from 'prop-types';
-import { Container, StyledForm } from '../Calculator/Calculator.styles';
+import { Container, StyledForm, ButtonContainer } from '../Calculator/Calculator.styles';
 import useCalculator from '../../hooks/useCalculator';
 import { Input, Button } from '../../components';
 
@@ -26,6 +26,10 @@ const CustomizeMeal = ({
     state: { params },
   },
 }) => {
+  /**
+   * submit button handler
+   * @param {string} meal
+   */
   const onSubmitHandler = meal => {
     navigate({
       routeName: 'Recipes',
@@ -37,7 +41,8 @@ const CustomizeMeal = ({
   return (
     <Container>
       <TextContainer>
-        <CaloriesText>Suggested Calories: {params.suggestedCalories}</CaloriesText>
+        {/* <CaloriesText>Suggested Calories: {params.suggestedCalories}</CaloriesText> */}
+        <CaloriesText>Suggested Calories: 2500</CaloriesText>
       </TextContainer>
       <StyledForm>
         <InputContainer>
@@ -69,10 +74,12 @@ const CustomizeMeal = ({
             onChangeHandler={onChangeHandler}
           />
         </InputContainer>
-        <Button
-          onSubmitHandler={() => onSubmitHandler({ ...params, individualMeal: metric })}
-          title="Next"
-        />
+        <ButtonContainer>
+          <Button
+            onSubmitHandler={() => onSubmitHandler({ ...params, individualMeal: metric })}
+            title="Next"
+          />
+        </ButtonContainer>
       </StyledForm>
     </Container>
   );

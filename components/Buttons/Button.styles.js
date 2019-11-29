@@ -3,7 +3,11 @@ import styled from 'styled-components/native';
 const StyledButton = styled.View`
   width: ${({ width }) => width || 200};
   height: ${({ height }) => height || 70};
-  background-color: ${({ theme: { colors } }) => colors.successBlue};
+  background-color: ${({
+    theme: {
+      colors: { successBlue },
+    },
+  }) => successBlue};
   margin: 0 auto;
   align-items: center;
   justify-content: center;

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { CardItem } from "native-base";
+import styled from 'styled-components';
+import { CardItem } from 'native-base';
 
 const Loading = styled.Text``;
 
@@ -18,6 +18,8 @@ const CardContent = styled(CardItem)`
 const Picture = styled.Image`
   margin-right: 20;
   margin-left: 10;
+  width: 150;
+  height: 150;
 `;
 
 const Label = styled.Text`
@@ -45,13 +47,4 @@ const InfoContainer = styled.View`
   padding: 0 0 10px 0;
 `;
 
-export {
-  Loading,
-  Error,
-  CardContent,
-  Picture,
-  Label,
-  RecipeInfo,
-  InfoContainer,
-  CardContainer
-};
+export { Loading, Error, CardContent, Picture, Label, RecipeInfo, InfoContainer, CardContainer };

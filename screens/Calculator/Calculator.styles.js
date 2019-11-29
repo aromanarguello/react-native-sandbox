@@ -40,4 +40,18 @@ const StyledForm = styled(Form)`
   width: 100%;
 `;
 
-export { MetricInputContainer, DropdownContainer, HeightContainer, Container, StyledForm };
+const ButtonContainer = styled.View`
+  width: 100%;
+  border-color: red;
+  border-width: 1;
+  margin-top: 50;
+`;
+
+export {
+  MetricInputContainer,
+  DropdownContainer,
+  HeightContainer,
+  Container,
+  StyledForm,
+  ButtonContainer,
+};
