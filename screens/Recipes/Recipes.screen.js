@@ -23,7 +23,7 @@ const Recipes = ({
 }) => {
   const { data, loading, error } = useQuery(FETCH_RECIPES, {
     variables: {
-      suggestedCalories: params.suggestedCalories,
+      suggestedCalories: params.meal.suggestedCalories,
     },
   });
   const handlePress = url => {
@@ -76,7 +76,11 @@ const Recipes = ({
                 onSubmitHandler={handlePress}
               />
             </InfoContainer>
-            <Picture style={{ width: 150, height: 150 }} source={{ uri: image }} accessibilityLabel="meal image" />
+            <Picture
+              style={{ width: 150, height: 150 }}
+              source={{ uri: image }}
+              accessibilityLabel="meal image"
+            />
           </CardContent>
         </Card>
       ))}
@@ -88,7 +92,9 @@ Recipes.propTypes = {
   navigation: shape({
     state: shape({
       params: shape({
-        suggestedCalories: number.isRequired,
+        meal: shape({
+          suggestedCalories: number.isRequired,
+        }),
       }),
     }),
   }),

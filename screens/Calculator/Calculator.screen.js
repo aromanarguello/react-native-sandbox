@@ -8,9 +8,7 @@ import {
   StyledForm,
 } from './Calculator.styles';
 import useCalculator from '../../hooks/useCalculator';
-import Input from '../../components/FormItems/Input';
-import Button from '../../components/Buttons/Button';
-import Dropdown from '../../components/Dropdowns/Dropdown';
+import { Input, Button, Dropdown } from '../../components';
 
 const Calculator = ({ navigation }) => {
   const {

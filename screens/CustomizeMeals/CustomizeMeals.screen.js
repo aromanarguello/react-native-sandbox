@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { number, shape, string } from 'prop-types';
 import { Container, StyledForm } from '../Calculator/Calculator.styles';
 import useCalculator from '../../hooks/useCalculator';
-import Input from '../../components/FormItems/Input';
+import { Input, Button } from '../../components';
 
 const TextContainer = styled.View`
   width: 100%;
@@ -22,11 +22,18 @@ const InputContainer = styled.View`
 
 const CustomizeMeal = ({
   navigation: {
+    navigate,
     state: { params },
   },
 }) => {
+  const onSubmitHandler = meal => {
+    navigate({
+      routeName: 'Recipes',
+      params: { meal },
+    });
+  };
+  console.log(params);
   const { metric, onChangeHandler } = useCalculator();
-  console.log(metric);
   return (
     <Container>
       <TextContainer>
@@ -43,9 +50,29 @@ const CustomizeMeal = ({
             width={300}
             onChangeHandler={onChangeHandler}
           />
-          <Input metricLabel="Lunch?" />
-          <Input metricLabel="Dinner?" />
+          <Input
+            metricLabel="Lunch?"
+            metricName="lunch"
+            metric={metric.name}
+            placeholder="i.e chicken"
+            returnKeyType="next"
+            width={300}
+            onChangeHandler={onChangeHandler}
+          />
+          <Input
+            metricLabel="Dinner?"
+            metricName="dinner"
+            metric={metric.name}
+            placeholder="i.e steak"
+            returnKeyType="next"
+            width={300}
+            onChangeHandler={onChangeHandler}
+          />
         </InputContainer>
+        <Button
+          onSubmitHandler={() => onSubmitHandler({ ...params, individualMeal: metric })}
+          title="Next"
+        />
       </StyledForm>
     </Container>
   );
