@@ -14,6 +14,8 @@ test('can render children', () => {
       <TestComponent />
     </Theme>
   );
-  const testNode = getByTestId('test');
-  expect(testNode.props.children).toMatch('Hello');
+  const {
+    props: { children },
+  } = getByTestId('test');
+  expect(children).toMatch('Hello');
 });
